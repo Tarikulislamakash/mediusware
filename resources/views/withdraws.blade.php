@@ -8,12 +8,10 @@
                     Name : {{ auth()->user()->name }}
                 </h4>
                 <h4>Current Balance : {{ auth()->user()->balance ?? 0 }}</h4>
+                <a class="btn btn-primary" href="{{ route('withdraw') }}">Withdraw</a>
             </div>
 
             <div class="col-md-8 d-flex justify-content-between mt-5">
-                @if(Session::has('deposit_success'))
-                    <p class="alert alert-success">{{ Session::get('deposit_success') }}</p>
-                @endif
                 @if(Session::has('withdraw_success'))
                     <p class="alert alert-info">{{ Session::get('withdraw_success') }}</p>
                 @endif
@@ -26,19 +24,17 @@
                       <tr>
                         <th scope="col">#</th>
                         <th scope="col">Amount</th>
-                        <th scope="col">Transaction Type</th>
                         <th scope="col">Fee</th>
                         <th scope="col">Date</th>
                       </tr>
                     </thead>
                     <tbody>
-                        @forelse ($transactions as $transaction)
+                        @forelse ($withdraws as $withdraw)
                             <tr>
                                 <th scope="row">{{ $loop->index + 1 }}</th>
-                                <td>{{ $transaction->amount ?? '' }}</td>
-                                <td>{{ $transaction->transaction_type == 1 ? 'Deposit' : 'Withdraw' }}</td>
-                                <td>{{ $transaction->fee ?? '' }}</td>
-                                <td>{{ $transaction->date ?? '' }}</td>
+                                <td>{{ $withdraw->amount ?? '' }}</td>
+                                <td>{{ $withdraw->fee ?? '' }}</td>
+                                <td>{{ $withdraw->date ?? '' }}</td>
                             </tr>
                         @empty
                             <tr>
