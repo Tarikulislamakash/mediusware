@@ -15,6 +15,9 @@
                 @if(Session::has('withdraw_success'))
                     <p class="alert alert-info">{{ Session::get('withdraw_success') }}</p>
                 @endif
+                @if(Session::has('withdraw_failed'))
+                    <p class="alert alert-danger">{{ Session::get('withdraw_failed') }}</p>
+                @endif
             </div>
 
             <div class="col-md-8 d-flex justify-content-between mt-5">

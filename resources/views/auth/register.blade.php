@@ -29,7 +29,7 @@
                         @enderror
                         <div class="mb-3">
                             <label for="account_type" class="form-label">Account Type</label>
-                            <select class="form-select" aria-label="Default select example" id="account_type" name="account_type" value="{{ old('account_type') }}">
+                            <select class="form-select" aria-label="Default select example" id="account_type" name="account_type" value="{{ old('account_type') }}" required>
                                 <option selected>Select Account Type</option>
                                 <option value="1">Individual</option>
                                 <option value="2">Business</option>

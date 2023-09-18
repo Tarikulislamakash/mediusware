@@ -15,8 +15,8 @@ return new class extends Migration
             $table->id();
             $table->integer('user_id');
             $table->enum('transaction_type', ['1', '2'])->comment('1 => deposit, 2 => withdraw');
-            $table->double('amount', 8, 2)->nullable();
-            $table->decimal('fee', 8, 2)->nullable();
+            $table->double('amount', 20, 2)->nullable();
+            $table->decimal('fee', 20, 2)->nullable();
             $table->date('date')->nullable();
             $table->timestamps();
         });

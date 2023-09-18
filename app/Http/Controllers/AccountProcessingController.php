@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Models\Transactions;
+use Illuminate\Support\Facades\Validator;
 
 class AccountProcessingController extends Controller
 {
@@ -33,6 +34,10 @@ class AccountProcessingController extends Controller
 
     public function depositSubmit(Request $request)
     {
+        $validator = Validator::make($request->all(), [
+            'amount' => ['required', 'digits_between:1,20'],
+        ]);
+
         Transactions::create([
             'user_id' => auth()->user()->id,
             'transaction_type' => 1,
@@ -44,7 +49,7 @@ class AccountProcessingController extends Controller
             'balance' => auth()->user()->balance + $request->amount,
         ]);
 
-        return redirect()->route('dashboard')->with('deposit_success', 'Balance deposited successfully');
+        return redirect()->route('deposits')->with('deposit_success', 'Balance deposited successfully');
     }
 
 
@@ -134,11 +139,11 @@ class AccountProcessingController extends Controller
         }
         else
         {
-            return redirect()->route('dashboard')->with('withdraw_failed', 'Insufficient balance.');
+            return redirect()->route('withdraws')->with('withdraw_failed', 'Insufficient balance.');
         }
 
 
-        return redirect()->route('dashboard')->with('withdraw_success', 'Balance withdrawal done successfully');
+        return redirect()->route('withdraws')->with('withdraw_success', 'Balance withdrawal done successfully');
 
     }
 

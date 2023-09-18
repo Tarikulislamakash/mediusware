@@ -11,15 +11,6 @@
             </div>
 
             <div class="col-md-8 d-flex justify-content-between mt-5">
-                @if(Session::has('deposit_success'))
-                    <p class="alert alert-success">{{ Session::get('deposit_success') }}</p>
-                @endif
-                @if(Session::has('withdraw_success'))
-                    <p class="alert alert-info">{{ Session::get('withdraw_success') }}</p>
-                @endif
-            </div>
-
-            <div class="col-md-8 d-flex justify-content-between mt-5">
 
                 <table class="table table-striped">
                     <thead>

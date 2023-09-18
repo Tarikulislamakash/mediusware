@@ -18,7 +18,7 @@ return new class extends Migration
             $table->timestamp('email_verified_at')->nullable();
             $table->string('password');
             $table->enum('account_type', ['1', '2'])->default('1')->comment('1 => individual, 2 => business')->nullable();
-            $table->double('balance', 8, 2)->default(500000)->nullable();
+            $table->double('balance', 20, 2)->default(500000)->nullable();
             $table->rememberToken();
             $table->timestamps();
         });
